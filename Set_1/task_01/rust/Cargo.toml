@@ -1,0 +1,7 @@
+[package]
+name = "rust"
+version = "0.1.0"
+authors = ["sahil <sahilmohdsahil126@gmail.com>"]
+
+[dependencies]
+rustc-serialize = "0.3.24"
