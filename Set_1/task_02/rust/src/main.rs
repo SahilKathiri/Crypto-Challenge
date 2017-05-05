@@ -1,10 +1,19 @@
 extern crate rustc_serialize as serialize;
 
-use serialize::base64::{self, ToBase64};
 use serialize::hex::FromHex;
+use serialize::hex::ToHex;
 
 fn main() {
-	let inp = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
-	let res = inp.from_hex().unwrap().to_base64(base64::STANDARD);
-	println!("{}", res);
+	let op_1 = "1c0111001f010100061a024b53535009181c";
+	let hex_1 = op_1.from_hex().unwrap();
+	let op_2 = "686974207468652062756c6c277320657965";
+	let hex_2 = op_2.from_hex().unwrap();
+
+	let mut res = Vec::new();
+
+	for (i, _) in hex_1.iter().enumerate() {
+		res.push(hex_1[i] ^ hex_2[i]);
+	}
+
+	println!("{:?}", res.to_hex());
 }
